@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Profession;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::with(['address', 'professions'])->get();
         return view('users.index', ['users' => $users]);
     }
 
@@ -46,6 +47,11 @@ class UserController extends Controller
 
         $user = User::create($data);
         $user->professions()->sync($request->input('professions', []));
+
+        $addressData = $request->input('address');
+        $address = new Address($addressData);
+
+        $user->address()->save($address);
 
         return redirect()->route('users.index');
     }
@@ -83,8 +89,20 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->update($request->all());
+        $user->update($request->only(['name', 'email'])); // y los demás campos que desees actualizar del usuario
+
+        // Sincronizar las profesiones
         $user->professions()->sync($request->input('professions', []));
+
+        // Actualizar o crear la dirección
+        $addressData = $request->input('address');
+
+        if ($user->address) {
+            $user->address->update($addressData);
+        } else {
+            $address = new Address($addressData);
+            $user->address()->save($address);
+        }
 
         return redirect()->route('users.index');
     }

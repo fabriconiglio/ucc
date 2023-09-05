@@ -48,4 +48,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Profession::class);
     }
 
+    public function address()
+    {
+        return $this->hasOne(Address::class);
+    }
+
+
 }

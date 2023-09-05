@@ -14,6 +14,7 @@
                 <th>Nombre</th>
                 <th>Email</th>
                 <th>Domicilio</th>
+                <th>Profesiones</th>
                 <th>Acciones</th>
             </tr>
             </thead>
@@ -22,7 +23,8 @@
                 <tr>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->domicilio }}</td>
+                    <td>{{ $user->address ? $user->address->street . ', ' . $user->address->city : 'No definido' }}</td>
+                    <td>{{ $user->professions->pluck('name')->implode(', ') }}</td>
                     <td class="d-flex">
                         <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-info mr-2">Editar</a>
                         <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de querer eliminar este usuario?');">
@@ -43,5 +45,6 @@
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
         </form>
+        <a href="{{ route('home') }}" class="btn btn-danger">Cancelar</a>
     </div>
 @endsection

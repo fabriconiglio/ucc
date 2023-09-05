@@ -11,8 +11,8 @@ class GiphyController extends Controller
     //
     public function index()
     {
-        $apiKey = 'TU_API_KEY'; // Reemplaza 'TU_API_KEY' con tu clave API
-        $searchTerm = 'funny'; // Esto es solo un término de búsqueda de ejemplo. Puedes hacer que los usuarios ingresen su propio término.
+        $apiKey = 'GZKz1peuMJlV8cFpJB98aE3IDLXhstAU';
+        $searchTerm = 'funny';
 
         $client = new Client([
             'base_uri' => 'http://api.giphy.com/v1/gifs/',

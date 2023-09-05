@@ -19,11 +19,6 @@
             </div>
 
             <div class="mb-3">
-                <label for="domicilio" class="form-label">Domicilio:</label>
-                <input type="text" name="domicilio" value="{{ $user->domicilio }}" class="form-control" id="domicilio" required>
-            </div>
-
-            <div class="mb-3">
                 <label for="professions" class="form-label">Profesiones:</label>
                 <select name="professions[]" multiple class="form-control" id="professions">
                     @foreach($professions as $profession)
@@ -34,6 +29,31 @@
                     @endforeach
                 </select>
             </div>
+
+            <!-- Calle -->
+            <div class="mb-3">
+                <label for="street" class="form-label">Calle:</label>
+                <input type="text" name="address[street]" value="{{ $user->address->street ?? '' }}" class="form-control" id="street" required>
+            </div>
+
+            <!-- Ciudad -->
+            <div class="mb-3">
+                <label for="city" class="form-label">Ciudad:</label>
+                <input type="text" name="address[city]" value="{{ $user->address->city ?? '' }}" class="form-control" id="city" required>
+            </div>
+
+            <!-- Estado/Provincia -->
+            <div class="mb-3">
+                <label for="state" class="form-label">Estado/Provincia:</label>
+                <input type="text" name="address[state]" value="{{ $user->address->state ?? '' }}" class="form-control" id="state" required>
+            </div>
+
+            <!-- Código Postal -->
+            <div class="mb-3">
+                <label for="postal_code" class="form-label">Código Postal:</label>
+                <input type="text" name="address[postal_code]" value="{{ $user->address->postal_code ?? '' }}" class="form-control" id="postal_code" required>
+            </div>
+
 
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary">Actualizar</button>

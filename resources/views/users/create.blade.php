@@ -18,11 +18,6 @@
             </div>
 
             <div class="mb-3">
-                <label for="domicilio" class="form-label">Domicilio:</label>
-                <input type="text" class="form-control" id="domicilio" name="domicilio" required>
-            </div>
-
-            <div class="mb-3">
                 <label for="password" class="form-label">Contraseña:</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
@@ -37,6 +32,26 @@
                         </option>
                     @endforeach
                 </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="street" class="form-label">Calle:</label>
+                <input type="text" class="form-control" id="street" name="address[street]" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="city" class="form-label">Ciudad:</label>
+                <input type="text" class="form-control" id="city" name="address[city]" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="state" class="form-label">Estado/Provincia:</label>
+                <input type="text" class="form-control" id="state" name="address[state]" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="postal_code" class="form-label">Código Postal:</label>
+                <input type="text" class="form-control" id="postal_code" name="address[postal_code]" required>
             </div>
 
             <button type="submit" class="btn btn-primary">Agregar</button>

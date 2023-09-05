@@ -17,14 +17,16 @@ services:
             - db
 
     db:
-        image: mysql:5.7
+        image: mysql:5.7.31
         container_name: laravel_db
         restart: always
         environment:
-            MYSQL_DATABASE: user_microservice
+            MYSQL_DATABASE: ucc
             MYSQL_USER: root
-            MYSQL_PASSWORD: secret
-            MYSQL_ROOT_PASSWORD: secret
+            MYSQL_PASSWORD: tupassword
+            MYSQL_ROOT_PASSWORD: tupassword
+        ports:
+            - "3307:3306"
         volumes:
             - mysql_data:/var/lib/mysql
 
